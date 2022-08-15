@@ -1,0 +1,110 @@
+{% extends 'manager/base.html' %} 
+{% load static %} 
+{% load humanize %} 
+{% block body %}
+<section class="content">
+  <div class="">
+    <div class="container-fluid">
+      <div class="block-header">
+        <div class="row">
+          <div class="col-lg-7 col-md-6 col-sm-12">
+            <h2>All Orders</h2>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="{% url 'dashboard' %}"
+                  ><i class="zmdi zmdi-home"></i> {{site_name}}</a
+                >
+              </li>
+              <li class="breadcrumb-item active">
+                <a href="{% url 'stats' %}">Application summary</a>
+              </li>
+            </ul>
+            <button class="btn btn-primary btn-icon mobile_menu" type="button">
+              <i class="zmdi zmdi-sort-amount-desc"></i>
+            </button>
+          </div>
+          <div class="col-lg-5 col-md-6 col-sm-12">
+            <button
+              class="btn btn-primary btn-icon float-right right_icon_toggle_btn"
+              type="button"
+            >
+              <i class="zmdi zmdi-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="row clearfix">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="card project_list">
+            <div class="table-responsive table-results">
+              <h5><strong>|Items</strong> {{count|intcomma}}</h5>
+              <table
+                class="table table-bordered table-striped table-hover dataTable js-exportable c_table theme-color"
+              >
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <td>Phone</td>
+                    <th>Loan amount</th>
+                    <th>Reason</th>
+                    <th>Created on</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% if applications %} 
+                    {% for item in applications %} 
+                        <tr id="id_{{item.application_serial}}">
+                            <td>{{forloop.counter}}.</td>
+                            <td>
+                            {{item.applicant_fname}} {{item.applicant_mname}}
+                            {{item.applicant_lname}}
+                            </td>
+                            <td>{{item.email|default:'No data'}}</td>
+                            <td>{{item.mobile_phone|default:'No data'}}</td>
+                            <td>{{item.loan_amount|intcomma|default:'No data'}}</td>
+                            <td>{{item.loan_reason|default:'No data'}}</td>
+                            <td>{{item.created_at|default:'No data'}}</td>
+                        </tr>
+                    {% endfor %} 
+                  {% else %}
+                  <tr>
+                    <td colspan="7" class="text-center">
+                      <p class="text-info">
+                        <i class="zmdi zmdi-alert-triangle"></i> No Applicatios
+                        item(s) found.
+                      </p>
+                    </td>
+                  </tr>
+                  {% endif %}
+                </tbody>
+              </table>
+            </div>
+            <ul class="pagination pagination-primary mt-4">
+              {% if applications.has_previous %}
+              <li class="page-item active">
+                <a
+                  class="page-link"
+                  href="{% url 'stats' %}?page={{applications.previous_page_number}}"
+                  ><i class="zmdi zmdi-chevron-left"></i
+                ></a>
+              </li>
+              {% endif %} 
+              {% if applications.has_next %}
+              <li class="page-item active">
+                <a
+                  class="page-link"
+                  href="{% url 'stats' %}?page={{applications.next_page_number}}"
+                  ><i class="zmdi zmdi-chevron-right"></i
+                ></a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

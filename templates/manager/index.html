@@ -1,0 +1,323 @@
+{% extends 'manager/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block body %}
+<section class="content">
+    <div class="">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-lg-7 col-md-6 col-sm-12">
+                    <h2>Business Loan Application</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"> <a href="{% url 'dashboard' %}">{{site_name}}</a></li>
+                        <li class="breadcrumb-item active">Application form</li>
+                    </ul>
+                    <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
+                </div>
+                <div class=" col-lg-5 col-md-6 col-sm-12 ">                
+                    <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="card position-relative">
+                        <div class="load-overlay users-overlay" style="display:none">
+                            <span class="overlay-close btn-remove" title="close overlay"><i class="fa fa-close"></i></span>
+                            <div class="wrapper-overlay">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="loader-container">
+                                        <div class="innerloader">
+                                            <svg class="circular" viewBox="25 25 50 50">
+                                            <circle class="path" cx="50" cy="50" r="10" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                                            </svg>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header">
+                            <h2><strong>|Fill</strong> form</h2>
+                        </div>
+                        <div class="body">
+                            <form action="" method="post" class="CustomerForm" novalidate>
+                                {% csrf_token %}
+                                <div class="row">
+                                </fieldset>
+                                    <legend><span class="badge badge-danger counter-wrapper">1</span> Personal Infomation</legend>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""> <span class="badge badge-primary counter-wrapper">1</span> Applicant first name <span class="text-danger">*</span></label>
+                                            {{form.applicant_fname}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <label for=""> <span class="badge badge-primary counter-wrapper">2</span> Prefix  <span class="text-danger">*</span></label>
+                                        <div class="form-group">
+                                            {{form.prefix}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-md-6 col-12">
+                                        <label for=""> <span class="badge badge-primary counter-wrapper">3</span> Applicant middle name  <span class="text-danger">*</span></label>
+                                        <div class="form-group">
+                                            {{form.applicant_mname}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">4</span> Applicant last name  <span class="text-danger">*</span></label>
+                                            {{form.applicant_lname}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">5</span> Applicant email address</label>
+                                            {{form.email}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-md-3 col-md-6 col-12">
+                                        <label for=""><span class="badge badge-primary counter-wrapper">6</span> Applicant phone number  <span class="text-danger">*</span></label>
+                                        <div class="form-group">
+                                            {{form.phone}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-12">
+                                        <label for=""><span class="badge badge-primary counter-wrapper">7</span> Applicant mobile phone number   <span class="text-danger">*</span></label>
+                                        <div class="form-group">
+                                            {{form.mobile_phone}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">8</span> Fax  <span class="text-danger">*</span></label>
+                                            {{form.fax}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">9</span> Applicant Street address  <span class="text-danger">*</span></label>
+                                            {{form.address1}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <label for=""><span class="badge badge-primary counter-wrapper">10</span> Applicant Street address line 2 </label>
+                                        <div class="form-group">
+                                            {{form.address2}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-md-3 col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">11</span> City  <span class="text-danger">*</span></label>
+                                            {{form.city}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-md-3 col-md-6 col-12" >
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">12</span> State/Province  <span class="text-danger">*</span></label>
+                                            {{form.state}}
+                                        </div>
+                                    </div>
+                                    <div class=" col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">13</span> Zip code  <span class="text-danger">*</span></label>
+                                            {{form.zip_code}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">14</span> Date of birth  <span class="text-danger">*</span></label>
+                                            {{form.dob}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                </hr>
+                                </fieldset>
+                                <br>
+                            </fieldset>
+                                    <legend><span class="badge badge-danger counter-wrapper">2</span> Project details</legend>
+                                    <div class="col-md-6 col-12" style="margin-bottom:80px !important;">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">15</span> Applying as  <span class="text-danger">*</span></label>
+                                            {{form.apply_as}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">16</span> Businness location street address </label>
+                                            {{form.biz_location1}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <label for=""><span class="badge badge-primary counter-wrapper">17</span> Businness location street address line 2 </label>
+                                        <div class="form-group">
+                                            {{form.biz_location2}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">18</span> City </label>
+                                            {{form.biz_city}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">19</span> State</label>
+                                            {{form.biz_state}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">20</span> Postal/Zip Code</label>
+                                            {{form.biz_zip_code}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">21</span> Project marketing material</label>
+                                            <div class="custom-file">
+                                                {{form.marketing_material}}
+                                                <label for="customFileInput1" class="custom-file-label">Browse file</label>
+                                            </div>
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">22</span> Project information</label>
+                                            <div class="custom-file">
+                                                {{form.marketing_information}}
+                                                <label for="customFileInput2" class="custom-file-label">Browse file</label>
+                                           </div>
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <br>
+                            </fieldset>
+                                    <legend><span class="badge badge-danger counter-wrapper">3</span> Financial information</legend>
+                                    <div class="col-md-6  col-12">
+                                        <div class="form-group" style="margin-bottom:80px !important;">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">23</span> Does the borrower have an upto date assets and liabilities?  <span class="text-danger">*</span></label>
+                                            {{form.statement}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">21</span> Upload statement</label>
+                                            <div class="custom-file">
+                                                {{form.statement_information}}
+                                                <label for="customFileInput1" class="custom-file-label">Browse file</label>
+                                            </div>
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                      <div class="col-md-6  col-12">
+                                        <div class="form-group" style="margin-bottom:80px !important;">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">23</span> Have you been previously been financed?  <span class="text-danger">*</span></label>
+                                            {{form.been_financed}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">24</span> Lender name</label>
+                                            {{form.lender_name}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">24</span> Financing was for</label>
+                                            {{form.finance_was_for}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">25</span> Loan reason</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input"  type="radio" name="loan_reason" value="Construction" id="opt1"/>
+                                                <label class="form-check-label" for="opt1">Construction</label>
+                                            </div> 
+                                            <div class="form-check">
+                                                <input class="form-check-input"  type="radio" name="loan_reason" value="Asset purchase" id="opt2"/>
+                                                <label class="form-check-label" for="opt2">Asset purchase</label>
+                                            </div> 
+                                            <div class="form-check">
+                                                <input class="form-check-input"  type="radio" name="loan_reason" value="Refinancing" id="opt3"/>
+                                                <label class="form-check-label" for="opt3">Refinancing</label>
+                                            </div>  
+                                            <div class="form-check">
+                                                <input class="form-check-input"  type="radio" id="opt4"/>
+                                                <label class="form-check-label" for="opt4">other</label>
+                                                <div class="form-group">
+                                                    <input class="form-control" type="text" name="loan_reason" />
+                                                </div>
+                                            </div>
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">26</span> Project Gross value</label>
+                                            {{form.project_gross_value}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for=""><span class="badge badge-primary counter-wrapper">27</span> Loan amount</label>
+                                            {{form.loan_amount}}
+                                            <div class="feedback"></div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <br>
+                            </fieldset>
+                                    <legend><span class="badge badge-danger counter-wrapper">4</span> Submit my application</legend>
+                                    <div class="col-12">
+                                        <p>The information provided in this application shall not be shared to anyone else and is kept confidential.</p>
+                                        <div class="form-check">
+                                            {{form.agree}}
+                                            <label for="exampleRadio1" class="form-check-label">I agree that the information herein are true and correct</label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                    <div class="col-12 mt-3 text-center">
+                                        <button class="btn btn-primary">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
