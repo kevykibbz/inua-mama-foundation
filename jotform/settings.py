@@ -14,12 +14,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY =env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 SITE_ID=2 
 
-ALLOWED_HOSTS = []
-#ALLOWED_HOSTS = ['localhost','127.0.0.1']
+#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['inua-mama-foundataion.herokuapp.com','www.inua-mama-foundataion.herokuapp.com','localhost','127.0.0.1']
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
